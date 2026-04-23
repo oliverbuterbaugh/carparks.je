@@ -52,9 +52,9 @@ h1, p { margin: 0; }
 /* ════════════════ HERO ════════════════ */
 .hero {
   flex: 1 1 auto;
-  padding: clamp(40px, 7vw, 96px) var(--gutter) 0;
+  padding: clamp(40px, 7vw, 96px) var(--gutter);
   display: flex;
-  align-items: stretch;
+  align-items: center;
 }
 .hero-inner {
   max-width: var(--max);
@@ -63,15 +63,11 @@ h1, p { margin: 0; }
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: clamp(40px, 6vw, 80px);
-  align-items: end;
+  align-items: center;
 }
 
 /* ── copy column ── */
-.hero-copy {
-  max-width: 520px;
-  align-self: center;
-  padding-bottom: clamp(40px, 7vw, 96px);
-}
+.hero-copy { max-width: 520px; }
 
 .hero-brand {
   font-size: 20px;
@@ -89,7 +85,6 @@ h1, p { margin: 0; }
   color: var(--ink);
   margin-bottom: 24px;
 }
-.hero-title .line { display: block; }
 .hero-title em {
   font-family: var(--font-serif);
   font-style: italic;
@@ -141,19 +136,25 @@ h1, p { margin: 0; }
 }
 .apple-logo { transform: translateY(-1px); }
 
-/* ── hero hand photo — flush with hero bottom (= footer divider) ── */
+/* ── phone pair (two mockups side by side) ── */
 .hero-media {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-  align-self: end;
+  align-items: center;
 }
-.hero-hand {
-  width: 100%;
-  max-width: 460px;
+.phone-pair {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.phone {
+  width: 280px;
   height: auto;
-  display: block;
-  filter: drop-shadow(0 30px 60px rgba(10, 15, 25, 0.18));
+  flex: 0 0 auto;
+  filter:
+    drop-shadow(0 30px 60px rgba(10, 15, 25, 0.18))
+    drop-shadow(0 10px 24px rgba(10, 15, 25, 0.10));
 }
 
 /* ════════════════ FOOTER ════════════════ */
@@ -187,19 +188,14 @@ h1, p { margin: 0; }
 
 /* ════════════════ RESPONSIVE ════════════════ */
 @media (max-width: 900px) {
-  .hero { padding: 28px var(--gutter) 0; }
+  .hero { padding: 28px var(--gutter) 40px; }
   .hero-inner {
     grid-template-columns: 1fr;
-    gap: 24px;
-    align-items: end;
+    gap: 40px;
   }
-  .hero-copy {
-    margin: 0 auto;
-    max-width: 620px;
-    padding-bottom: 0;
-    align-self: center;
-  }
-  .hero-hand { max-width: min(78vw, 360px); }
+  .hero-copy { margin: 0 auto; max-width: 620px; }
+  .phone-pair { gap: 14px; }
+  .phone { width: min(44vw, 220px); }
 }
 
 @media (max-width: 520px) {
