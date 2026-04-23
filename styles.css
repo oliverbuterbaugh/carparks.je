@@ -136,25 +136,17 @@ h1, p { margin: 0; }
 }
 .apple-logo { transform: translateY(-1px); }
 
-/* ── phone pair (two mockups side by side) ── */
+/* ── hero hand image ── */
 .hero-media {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.phone-pair {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
-.phone {
-  width: 280px;
+.hand {
+  width: 100%;
+  max-width: 560px;
   height: auto;
-  flex: 0 0 auto;
-  filter:
-    drop-shadow(0 30px 60px rgba(10, 15, 25, 0.18))
-    drop-shadow(0 10px 24px rgba(10, 15, 25, 0.10));
+  display: block;
 }
 
 /* ════════════════ FOOTER ════════════════ */
@@ -194,8 +186,7 @@ h1, p { margin: 0; }
     gap: 40px;
   }
   .hero-copy { margin: 0 auto; max-width: 620px; }
-  .phone-pair { gap: 14px; }
-  .phone { width: min(44vw, 220px); }
+  .hand { max-width: min(90vw, 480px); }
 }
 
 @media (max-width: 520px) {
