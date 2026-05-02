@@ -149,6 +149,105 @@ h1, p { margin: 0; }
   display: block;
 }
 
+/* ════════════════ PROSE (long-form pages — privacy, terms…) ════════════════ */
+.prose {
+  flex: 1 1 auto;
+  padding: clamp(40px, 7vw, 96px) var(--gutter);
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.prose-header {
+  margin-bottom: clamp(32px, 5vw, 56px);
+}
+.prose-brand {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--ink-muted);
+  margin-bottom: 24px;
+  transition: color 0.2s var(--ease);
+}
+.prose-brand:hover { color: var(--ink); }
+.prose-title {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 600;
+  font-size: clamp(40px, 7vw, 72px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0 0 12px;
+}
+.prose-meta {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.prose-body {
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--ink);
+}
+.prose-body .lede {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--ink);
+  margin-bottom: 28px;
+}
+.prose-body p { margin: 0 0 18px; }
+.prose-body h2 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 48px 0 16px;
+}
+.prose-body h3 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  margin: 32px 0 10px;
+}
+.prose-body ul {
+  margin: 0 0 18px;
+  padding-left: 22px;
+}
+.prose-body li {
+  margin: 0 0 8px;
+}
+.prose-body a {
+  color: var(--accent);
+  border-bottom: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  transition: border-color 0.2s var(--ease);
+}
+.prose-body a:hover {
+  border-bottom-color: var(--accent);
+}
+.prose-body code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(20, 20, 24, 0.05);
+  color: var(--ink);
+}
+.prose-body strong { font-weight: 700; }
+
+@media (max-width: 600px) {
+  .prose-body { font-size: 16px; }
+  .prose-body .lede { font-size: 17px; }
+  .prose-body h2 { font-size: 22px; margin-top: 40px; }
+}
+
 /* ════════════════ FOOTER ════════════════ */
 .site-footer {
   padding: 28px var(--gutter);

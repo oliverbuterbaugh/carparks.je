@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Privacy — carparks.je</title>
+  <meta name="description" content="What carparks.je collects, why, and what you can do about it.">
+  <meta name="theme-color" content="#fafafa">
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,600&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="prose">
+    <header class="prose-header">
+      <a class="prose-brand" href="/">carparks.je</a>
+      <h1 class="prose-title">Privacy</h1>
+      <p class="prose-meta">Effective 2 May 2026</p>
+    </header>
+
+    <section class="prose-body">
+      <p class="lede">
+        This explains what data the carparks.je iOS app collects, why,
+        where it goes, and what you can do about it. Plain English.
+        No dark patterns.
+      </p>
+
+      <p>
+        We're a small Jersey-based operation. The data controller for
+        everything below is <strong>Parking Intelligence Limited</strong>,
+        trading as carparks.je. Contact:
+        <a href="mailto:privacy@carparks.je">privacy@carparks.je</a>.
+      </p>
+
+      <h2>The two-pipe model</h2>
+
+      <p>
+        The app keeps two strictly separate kinds of data. The
+        distinction matters — please read both.
+      </p>
+
+      <h3>On-device only</h3>
+      <p>
+        Your precise location, full search queries, the destinations
+        you actually pick, the parks you focus on, your trip starts
+        and arrivals — these are recorded into an encrypted
+        <a href="https://developer.apple.com/documentation/swiftdata">SwiftData</a>
+        store inside the app sandbox on your iPhone.
+        <strong>They never leave your device.</strong>
+        They power features like personalised park suggestions
+        ("you usually pick Green Street on Wednesdays around 09:00").
+        You can wipe this store at any time from
+        Settings&nbsp;→&nbsp;Privacy&nbsp;→&nbsp;Clear&nbsp;on-device&nbsp;history.
+        We can't see it. Apple can't see it. iCloud doesn't sync it.
+      </p>
+
+      <h3>Server-side analytics</h3>
+      <p>
+        When the app does something useful (you start a trip, search
+        for a destination, view a recommendation), it sends a small
+        de-identified event to our servers in BigQuery. These events
+        deliberately do <strong>not</strong> include your precise
+        coordinates or what you searched for. They include coarse
+        area buckets (e.g.&nbsp;<code>ST_HELIER</code>,
+        <code>OUTSIDE_KNOWN_AREA</code>), category labels
+        (e.g.&nbsp;<code>healthcare</code>, <code>shop</code>), and
+        distance bands (e.g.&nbsp;<code>1_3km</code>). Each event
+        carries an opaque per-device identifier (Apple's IDFV) and a
+        per-launch session id. We use this to spot bugs, prioritise
+        features, and improve our parking recommendations.
+      </p>
+      <p>
+        You can turn the server pipe off entirely from
+        Settings&nbsp;→&nbsp;Privacy&nbsp;→&nbsp;Share&nbsp;usage&nbsp;analytics.
+        Doing so does not affect any app functionality.
+      </p>
+
+      <h2>What's in a server-side event</h2>
+      <p>Each event includes:</p>
+      <ul>
+        <li>a generated event id and timestamp</li>
+        <li>the device's IDFV — an Apple-assigned identifier specific to our app, which changes if you uninstall and reinstall</li>
+        <li>a per-launch session id</li>
+        <li>the event name (e.g.&nbsp;<code>start_trip</code>, <code>destination_selected</code>)</li>
+        <li>the app version, OS version, device model, locale, timezone</li>
+        <li>coarse parameters relevant to that event — area buckets, category buckets, distance bands, park codes, durations</li>
+      </ul>
+
+      <p>We do <strong>not</strong> collect:</p>
+      <ul>
+        <li>your name, email, phone number, or contacts</li>
+        <li>precise GPS coordinates</li>
+        <li>the literal text you type into the search bar</li>
+        <li>the photos, contacts, or other apps on your device</li>
+      </ul>
+
+      <h2>Legal basis</h2>
+      <p>
+        We rely on <strong>legitimate interest</strong> (Jersey Data
+        Protection Law 2018 art.&nbsp;8(1)(f) /
+        UK&nbsp;GDPR art.&nbsp;6(1)(f)) for the server-side
+        analytics pipe — specifically, our interest in operating,
+        improving, and debugging a free public-good app.
+      </p>
+      <p>
+        We've completed a Legitimate Interest Assessment, which
+        concludes that this basis is valid because (a)&nbsp;the data
+        is de-identified and area-bucketed; (b)&nbsp;we apply a
+        k=10 / k=20 anonymity threshold to all analyst access;
+        (c)&nbsp;the user can opt out at any time without losing
+        functionality; (d)&nbsp;no profiling or automated
+        decision-making affects the user.
+      </p>
+      <p>
+        The on-device pipe is <strong>not</strong> subject to data
+        protection law because the data never leaves the user's
+        device. We are not the controller of data we cannot access.
+      </p>
+
+      <h2>Retention</h2>
+      <ul>
+        <li><strong>Server-side events:</strong> 18 months
+          (BigQuery partition expiration). After that, they're
+          automatically deleted.</li>
+        <li><strong>On-device events:</strong> kept until you
+          delete them. We've deliberately chosen not to auto-prune so
+          the personalised-suggestion features have a long signal
+          history. Use Settings&nbsp;→&nbsp;Privacy&nbsp;→&nbsp;Clear
+          on-device history to wipe.</li>
+      </ul>
+
+      <h2>Sharing</h2>
+      <p>
+        We do not sell, rent, or share your data with anyone. We do
+        use Google Cloud (BigQuery, Cloud Functions) and Firebase
+        (Analytics, App Check, Cloud Messaging) as data processors.
+        Their privacy policies apply to the data we hand them. We
+        don't share with anyone else.
+      </p>
+
+      <h2>Your rights</h2>
+      <p>
+        Under Jersey's Data Protection (Jersey) Law 2018 and (where
+        applicable) the UK GDPR, you can:
+      </p>
+      <ul>
+        <li>ask us what we hold about your device (subject access request)</li>
+        <li>ask us to delete it (right to erasure)</li>
+        <li>ask us to correct it (right to rectification — though our event data is largely immutable, so this rarely applies)</li>
+        <li>object to processing (which is how the in-app analytics toggle works)</li>
+        <li>complain to the
+          <a href="https://oicjersey.org/" rel="noopener">Jersey Office of the Information Commissioner</a></li>
+      </ul>
+      <p>
+        To exercise any of these rights, email
+        <a href="mailto:privacy@carparks.je">privacy@carparks.je</a>.
+        We aim to respond within 30 days. To make a deletion request
+        actionable, please send the request from the device itself
+        using Settings&nbsp;→&nbsp;Privacy&nbsp;→&nbsp;Request
+        server-side deletion — this gives us the IDFV needed to
+        locate your records.
+      </p>
+
+      <h2>Children</h2>
+      <p>
+        The app is rated 4+ on the App Store but is not directed at
+        children under 13 and does not knowingly collect data from
+        them. If you believe a child has used the app, contact us and
+        we'll delete what we can.
+      </p>
+
+      <h2>Changes</h2>
+      <p>
+        We'll bump the effective date at the top and post the diff in
+        the app's release notes when we change this policy
+        materially.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        <a href="mailto:privacy@carparks.je">privacy@carparks.je</a>
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-line">Parking Intelligence Limited &copy; 2026</p>
+      <nav class="footer-nav" aria-label="Footer">
+        <a href="/privacy">Privacy</a>
+        <a href="mailto:hello@carparks.je">Contact</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
