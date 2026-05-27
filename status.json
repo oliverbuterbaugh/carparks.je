@@ -1,13 +1,5 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-05-27T09:45:00Z",
-  "messages": [
-    {
-      "id": "2026-05-27-sensor-feed",
-      "severity": "warning",
-      "title": "Live counts are delayed for some car parks",
-      "body": "The upstream sensor feed is reporting stale numbers for several car parks this morning. This is on the data provider's side, not us — the car parks themselves are operating normally. We're monitoring it and the numbers will refresh as soon as the feed recovers.",
-      "expiresAt": "2026-05-27T18:00:00Z"
-    }
-  ]
+  "updatedAt": "2026-05-27T10:00:00Z",
+  "messages": []
 }
