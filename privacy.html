@@ -48,8 +48,9 @@
 
       <h3>1. Usage analytics — optional</h3>
       <p>
-        The app sends small events like "trip started" or "recommendation
-        viewed" so we can spot bugs and improve the recommendations. Before
+        The app sends small events like "recommendation viewed" or
+        "destination selected" so we can spot bugs and improve the
+        recommendations. Before
         anything is sent, locations are reduced on your device to coarse
         buckets — a parish or town zone, a distance band, a place category
         like <code>shop</code> — so precise coordinates and search text
@@ -65,18 +66,7 @@
         Google Analytics collection, and nothing in the app stops working.
       </p>
 
-      <h3>2. Trips — only while one is running</h3>
-      <p>
-        Starting a trip (the Live Activity on your lock screen) stores the
-        trip on our servers so we can keep it updated: the destination you
-        chose (name and map position), arrival time, the recommended car
-        park, a random identifier generated on your device, and an Apple
-        push token used to update the Live Activity. This is the feature
-        working as advertised, not analytics — and it's deleted when the
-        trip ends (8 hours at most). Your own location is not part of it.
-      </p>
-
-      <h3>3. Crash reports</h3>
+      <h3>2. Crash reports</h3>
       <p>
         If the app crashes, Firebase Crashlytics sends us a report with
         the stack trace, device model and OS version so we can fix it.
